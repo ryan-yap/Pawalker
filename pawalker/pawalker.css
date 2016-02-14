@@ -39,7 +39,7 @@ input, button {
 .cont {
   position: relative;
   height: 100%;
-  background-image: url("http://www.coolanimalworld.com/wp-content/uploads/2013/11/Cute-Pembroke-Welsh-Corgi-short-legged-Angela-5.jpg");
+  background-image: url("http://images5.alphacoders.com/335/335664.jpg");
   background-size: cover;
   overflow: auto;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -59,8 +59,8 @@ input, button {
 .login {
   position: relative;
   height: 100%;
-  background: -webkit-linear-gradient(top, rgba(65, 248, 203, 0.8) 100%, rgba(255, 255, 255, 0.6) 0%);
-  background: linear-gradient(to bottom, rgba(65, 248, 203, 0.8) 100%, rgba(255, 255, 255, 0.6) 0%);
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
   -webkit-transition: opacity 0.1s, -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
   transition: opacity 0.1s, -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
   transition: opacity 0.1s, transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
@@ -118,7 +118,7 @@ input, button {
   height: 4rem;
   margin: 5rem 0 2.2rem;
   color: rgba(255, 255, 255, 0.8);
-  background: #FF3366;
+  background: #41f8cb;
   font-size: 1.5rem;
   border-radius: 3rem;
   cursor: pointer;
@@ -502,4 +502,10 @@ input, button {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+.map-container {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
 }

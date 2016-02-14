@@ -14,8 +14,9 @@ Router.route('/signup', function () {
     this.render('signup');
 });
 
-Router.route('/home', function () {
+Router.route('/home', function(){
     this.render('home');
+    GoogleMaps.load();
 });
 
 Template.login.events({
@@ -56,3 +57,19 @@ Template.signup.events({
     }
 });
 
+Template.home.helpers({
+    mapOptions: function() {
+        if (GoogleMaps.loaded()) {
+            return {
+                center: new google.maps.LatLng(49.246292, -123.116226),
+                zoom: 12
+            };
+        }
+    }
+});
+
+Template.home.onCreated(function() {
+    GoogleMaps.ready('home', function(map) {
+        console.log("I'm ready!");
+    });
+});
