@@ -5,18 +5,9 @@
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans'>
 </head>
 <body>
-<div class="cont">
-    <div class="demo">
-        <div class="login">
-            <img src="http://192.241.207.75:8080/logo.png" alt="logo" style="width:304px;height:228px;">
-            {{#if currentUser}}
-                <p>You're logged in.</p>
-            {{else}}
-                {{> login}}
-            {{/if}}
-        </div>
-    </div>
-</div>
+    {{#if currentUser}}
+        <p>You're logged in.</p>
+    {{/if}}
 </body>
 
 <template name="route">

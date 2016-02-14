@@ -6,6 +6,10 @@ var trimInput = function(val) {
     return val.replace(/^\s*|\s*$/g, "");
 }
 
+Router.route('/', function () {
+    this.render('login');
+});
+
 Router.route('/signup', function () {
     this.render('signup');
 });
@@ -25,12 +29,12 @@ Template.login.events({
         Meteor.loginWithPassword(email, password, function (err) {
             if (!err) {
                 console.log("User's logged in")
+
             } else {
+                console.log(err)
                 console.log("Login Unsuccessful")
             }
         });
-    },
-    'click .login__signup': function (event) {
     }
 });
 
