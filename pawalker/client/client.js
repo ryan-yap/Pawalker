@@ -6,18 +6,16 @@ var trimInput = function(val) {
     return val.replace(/^\s*|\s*$/g, "");
 }
 
-/**
- * Created by KangShiang on 16-02-13.
- */
-// when you navigate to "/one" automatically render the template named "One".
-Router.route('/');
-
-Router.route('/login', function () {
-    this.render('login');
+Router.route('/', function () {
+   this.render('login');
 });
 
 Router.route('/signup', function () {
     this.render('signup');
+});
+
+Router.route('/home', function () {
+    this.render('home');
 });
 
 Template.login.events({
@@ -25,20 +23,17 @@ Template.login.events({
         event.preventDefault();
         // retrieve the input field values
         var email = template.find('.login__input.name').value;
-        console.log(email);
         var password = template.find('.login__input.pass').value;
-        console.log(password);
         // Trim and validate your fields here....
         trimInput(email);
         // If validation passes, supply the appropriate fields to the
         // Meteor.loginWithPassword() function.
         Meteor.loginWithPassword({email:email}, password, function (err) {
             if (!err) {
-                console.log("User's logged in")
-
+                Router.go("home");
             } else {
-                console.log(err)
-                console.log("Login Unsuccessful")
+                console.log(err.reason);
+                console.log("Login Unsuccessful");
             }
         });
     }
@@ -50,10 +45,14 @@ Template.signup.events({
         var email = template.find('.login__input.name').value;
         var password = template.find('.login__input.pass').value;
         trimInput(email);
-        Accounts.createUser({
-            email: email,
-            password: password
+        Accounts.createUser({email: email, password: password}, function(err) {
+            if (!err) {
+                Router.go("home");
+            } else {
+                console.log(err.reason);
+            }
         });
+        Meteor.call("userReg", email, password);
     }
 });
 
