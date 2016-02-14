@@ -6,6 +6,8 @@ var trimInput = function(val) {
  * Created by KangShiang on 16-02-13.
  */
 // when you navigate to "/one" automatically render the template named "One".
+Router.route('/');
+
 Router.route('/login', function () {
     this.render('login');
 });
