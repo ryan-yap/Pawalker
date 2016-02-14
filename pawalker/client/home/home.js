@@ -1,6 +1,12 @@
 /**
- * Created by KangShiang on 16-02-13.
+ * Created by Daniel on 14/02/2016.
  */
+
+Template.home.onCreated(function() {
+    GoogleMaps.ready('home', function(map) {
+        console.log("I'm ready!");
+    });
+});
 
 Template.home.helpers({
     mapOptions: function() {
@@ -11,12 +17,6 @@ Template.home.helpers({
             };
         }
     }
-});
-
-Template.home.onCreated(function() {
-    GoogleMaps.ready('home', function(map) {
-        console.log("I'm ready!");
-    });
 });
 
 Template.home.events({
