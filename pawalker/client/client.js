@@ -32,7 +32,7 @@ Template.login.events({
         trimInput(email);
         // If validation passes, supply the appropriate fields to the
         // Meteor.loginWithPassword() function.
-        Meteor.loginWithPassword(email, password, function (err) {
+        Meteor.loginWithPassword({email:email}, password, function (err) {
             if (!err) {
                 console.log("User's logged in")
 
