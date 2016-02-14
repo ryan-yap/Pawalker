@@ -1,8 +1,16 @@
+/**
+ * Created by KangShiang on 16-02-13.
+ */
+
 var trimInput = function(val) {
     return val.replace(/^\s*|\s*$/g, "");
 }
 
-Template.Login.events({
+Router.route('/signup', function () {
+    this.render('signup');
+});
+
+Template.login.events({
     'click .login__submit': function (event, template) {
         event.preventDefault();
         // retrieve the input field values
@@ -26,7 +34,7 @@ Template.Login.events({
     }
 });
 
-Template.SignUp.events({
+Template.signup.events({
     'click .login__submit': function (event, template) {
         event.preventDefault();
         var email = template.find('.login__input.name').value;
