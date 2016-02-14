@@ -3,8 +3,8 @@ var trimInput = function(val) {
 }
 
 if (Meteor.isClient) {
-  Template.body.events({
-    'click .login__submit' : function(event, template){
+  Template.Login.events({
+    'click .login__submit': function(event, template){
       event.preventDefault();
       // retrieve the input field values
       var email = template.find('.login__input.name').value;
@@ -17,13 +17,24 @@ if (Meteor.isClient) {
       // Meteor.loginWithPassword() function.
       Meteor.loginWithPassword(email, password, function(err){
         if (err){
-          console.log("User's logged in")
-        }else{
+          console.log(err);
           console.log("Login Unsuccessful")
+        }else{
+          console.log("Login Successful")
         }
         // The user has been logged in.
       });
-      console.log('')
+    },
+
+    'click .login__signup': function(event, template){
+      event.preventDefault();
+      var email = template.find('.login__input.name').value;
+      var password = template.find('.login__input.pass').value;
+      trimInput(email);
+      Accounts.createUser({
+        email: email,
+        password: password
+      });
     }
   });
 }
