@@ -7,7 +7,11 @@ var trimInput = function(val) {
 }
 
 Router.route('/', function () {
-   this.render('login');
+    if (Meteor.userId()) {
+        Router.go("home");
+    } else {
+        this.render('login');
+    }
 });
 
 Router.route('/signup', function () {
@@ -15,8 +19,13 @@ Router.route('/signup', function () {
 });
 
 Router.route('/home', function(){
-    this.render('home');
-    GoogleMaps.load();
+    if (Meteor.userId()) {
+        this.render('home');
+        GoogleMaps.load();
+    } else {
+        Router.go("/");
+    }
+
 });
 
 Template.login.events({
@@ -72,4 +81,13 @@ Template.home.onCreated(function() {
     GoogleMaps.ready('home', function(map) {
         console.log("I'm ready!");
     });
+});
+
+Template.home.events({
+    'click .logout': function (event) {
+        console.log("Logout");
+        event.preventDefault();
+        Meteor.logout();
+        Router.go("/");
+    }
 });
