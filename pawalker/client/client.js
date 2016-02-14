@@ -1,3 +1,7 @@
+/**
+ * Created by KangShiang on 16-02-13.
+ */
+
 var trimInput = function(val) {
     return val.replace(/^\s*|\s*$/g, "");
 }
@@ -12,12 +16,11 @@ Router.route('/login', function () {
     this.render('login');
 });
 
-// when you navigate to "/two" automatically render the template named "Two".
 Router.route('/signup', function () {
     this.render('signup');
 });
 
-Template.body.events({
+Template.login.events({
     'click .login__submit': function (event, template) {
         event.preventDefault();
         // retrieve the input field values
@@ -30,13 +33,27 @@ Template.body.events({
         // If validation passes, supply the appropriate fields to the
         // Meteor.loginWithPassword() function.
         Meteor.loginWithPassword(email, password, function (err) {
-            if (err) {
+            if (!err) {
                 console.log("User's logged in")
+
             } else {
+                console.log(err)
                 console.log("Login Unsuccessful")
             }
-            // The user has been logged in.
         });
-        console.log('')
     }
 });
+
+Template.signup.events({
+    'click .login__submit': function (event, template) {
+        event.preventDefault();
+        var email = template.find('.login__input.name').value;
+        var password = template.find('.login__input.pass').value;
+        trimInput(email);
+        Accounts.createUser({
+            email: email,
+            password: password
+        });
+    }
+});
+
