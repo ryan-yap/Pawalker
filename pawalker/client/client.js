@@ -2,6 +2,19 @@ var trimInput = function(val) {
     return val.replace(/^\s*|\s*$/g, "");
 }
 
+/**
+ * Created by KangShiang on 16-02-13.
+ */
+// when you navigate to "/one" automatically render the template named "One".
+Router.route('/login', function () {
+    this.render('login');
+});
+
+// when you navigate to "/two" automatically render the template named "Two".
+Router.route('/signup', function () {
+    this.render('signup');
+});
+
 Template.body.events({
     'click .login__submit': function (event, template) {
         event.preventDefault();
