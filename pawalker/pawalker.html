@@ -9,7 +9,11 @@
     <div class="demo">
         <div class="login">
             <img src="http://192.241.207.75:8080/logo.png" alt="logo" style="width:304px;height:228px;">
-            {{> Login}}
+            {{#if currentUser}}
+                <p>You're logged in.</p>
+            {{else}}
+                {{> SignUp}}
+            {{/if}}
         </div>
     </div>
 </div>
