@@ -6,28 +6,6 @@ var trimInput = function(val) {
     return val.replace(/^\s*|\s*$/g, "");
 }
 
-Router.route('/', function () {
-    if (Meteor.userId()) {
-        Router.go("home");
-    } else {
-        this.render('login');
-    }
-});
-
-Router.route('/signup', function () {
-    this.render('signup');
-});
-
-Router.route('/home', function(){
-    if (Meteor.userId()) {
-        this.render('home');
-        GoogleMaps.load();
-    } else {
-        Router.go("/");
-    }
-
-});
-
 Template.login.events({
     'click .login__submit': function (event, template) {
         event.preventDefault();
