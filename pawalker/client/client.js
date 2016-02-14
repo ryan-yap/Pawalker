@@ -20,6 +20,11 @@ Router.route('/signup', function () {
     this.render('signup');
 });
 
+Router.route('/home', function(){
+    this.render('home');
+    GoogleMaps.load();
+});
+
 Template.login.events({
     'click .login__submit': function (event, template) {
         event.preventDefault();
@@ -34,7 +39,7 @@ Template.login.events({
         // Meteor.loginWithPassword() function.
         Meteor.loginWithPassword({email:email}, password, function (err) {
             if (!err) {
-                console.log("User's logged in")
+                Router.go("/home");
 
             } else {
                 console.log(err)
@@ -57,3 +62,19 @@ Template.signup.events({
     }
 });
 
+Template.home.helpers({
+    mapOptions: function() {
+        if (GoogleMaps.loaded()) {
+            return {
+                center: new google.maps.LatLng(49.246292, -123.116226),
+                zoom: 12
+            };
+        }
+    }
+});
+
+Template.home.onCreated(function() {
+    GoogleMaps.ready('home', function(map) {
+        console.log("I'm ready!");
+    });
+});
